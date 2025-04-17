@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Web Scraper</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    
+</head>
+<body>
+    <div class="container">
+        <h1>AI Web Scraper</h1>
+
+        
+        <form method="POST" action="/">
+            <label for="url"><b>Enter URL:</b></label>
+            <input type="text" id="url" name="url" value="{{ request.form['url'] if request.form['url'] else '' }}" required>
+
+            
+            <label for="question"><b>Wanna Ask a Question ?</b></label>
+            <input type="text" id="question" name="question" placeholder="Ask something about the content...">
+
+            
+            <button type="submit">Scrape and Get Answer</button>
+        </form>
+
+        <!--if any error--> 
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <!--for summary-->
+        {% if summary %}
+            <h2>Summary:</h2>
+            <textarea rows="10" readonly>{{ summary }}</textarea>
+        {% endif %}
+
+        <!--for answering to question-->
+        {% if answer %}
+            <h2>Answer:</h2>
+            <textarea rows="5" readonly>{{ answer }}</textarea>
+        {% endif %}
+    </div>
+</body>
+</html>
